@@ -1,4 +1,5 @@
 /*
+ * Copyright 2012 Canonical Ltd.
  * Copyright 2018 Rodney Dawes
  *
  * This program is free software; you can redistribute it and/or modify
@@ -14,30 +15,25 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "units.h"
+#pragma once
 
-#include <QQmlContext>
-#include <QQmlEngine>
-#include <QQmlExtensionPlugin>
-#include <QVariant>
+#include <QObject>
 
-class ErgoPlugin: public QQmlExtensionPlugin
+namespace ergo
 {
-    Q_OBJECT
-    Q_PLUGIN_METADATA(IID QQmlExtensionInterface_iid)
 
-    public:
-    void initializeEngine(QQmlEngine *engine, const char *uri) override
+    class Units: public QObject
     {
-        static ergo::Units *units = new ergo::Units(engine);
+        Q_OBJECT
 
-        auto context = engine->rootContext();
-        context->setContextProperty(QStringLiteral("units"), units);
-    }
+      public:
+        explicit Units(QObject *parent = 0);
 
-    void registerTypes(const char *uri) override
-    {
-    }
-};
+        Q_INVOKABLE int dp(float value);
+        Q_INVOKABLE int gu(float value);
 
-#include "plugin.moc"
+      private:
+        float m_gridUnitPx;
+    };
+
+} // namespace ergo
