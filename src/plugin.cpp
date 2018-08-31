@@ -37,6 +37,7 @@ class ErgoPlugin: public QQmlExtensionPlugin
 
     void registerTypes(const char *uri) override
     {
+        qmlRegisterUncreatableType<ergo::Units>(uri, 0, 0, "Units", "Not instantiable");
     }
 };
 

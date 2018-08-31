@@ -2,18 +2,19 @@
 find_package(Qt5Gui REQUIRED)
 find_package(Qt5Qml REQUIRED)
 
-add_library(ergoplugin SHARED
+configure_file(qmldir.in Ergo/qmldir)
+add_library(${PLUGIN_NAME} SHARED
   plugin.cpp
 
   units.cpp
   units.h
 )
 
-set_target_properties(ergoplugin PROPERTIES
+set_target_properties(${PLUGIN_NAME} PROPERTIES
   LIBRARY_OUTPUT_DIRECTORY Ergo
 )
 
-target_link_libraries(ergoplugin
+target_link_libraries(${PLUGIN_NAME}
   Qt5::Core
   Qt5::Gui
   Qt5::Qml

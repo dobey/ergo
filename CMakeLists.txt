@@ -28,12 +28,14 @@ endif(EXISTS "/etc/debian_version")
 find_package(Threads REQUIRED)
 find_package(PkgConfig REQUIRED)
 
+# The real code begins here
+set(PLUGIN_NAME ergoplugin)
 #add_subdirectory(po)
 add_subdirectory(src)
 
 #find_package(CoverageReport)
 #enable_coverage_report(
-#  TARGETS 
+#  TARGETS ${PLUGIN_NAME}
 #  TESTS ${COVERAGE_TEST_TARGETS}
 #  FILTER /usr/include ${CMAKE_BINARY_DIR}/*
 #)
