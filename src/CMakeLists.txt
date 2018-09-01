@@ -6,6 +6,8 @@ configure_file(qmldir.in Ergo/qmldir)
 add_library(${PLUGIN_NAME} SHARED
   plugin.cpp
 
+  clipboard.cpp
+  clipboard.h
   units.cpp
   units.h
 )

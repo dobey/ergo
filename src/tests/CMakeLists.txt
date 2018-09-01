@@ -14,6 +14,7 @@ function(add_test_by_name name)
   )
 endfunction()
 
+add_test_by_name(test-clipboard)
 add_test_by_name(test-units)
 
 set(COVERAGE_TEST_TARGETS

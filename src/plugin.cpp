@@ -13,7 +13,7 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
+#include "clipboard.h"
 #include "units.h"
 
 #include <QQmlContext>
@@ -38,6 +38,7 @@ class ErgoPlugin: public QQmlExtensionPlugin
     void registerTypes(const char *uri) override
     {
         qmlRegisterUncreatableType<ergo::Units>(uri, 0, 0, "Units", "Not instantiable");
+        qmlRegisterType<ergo::Clipboard>(uri, 0, 0, "Clipboard");
     }
 };
 
