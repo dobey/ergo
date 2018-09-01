@@ -17,7 +17,6 @@
 
 #include "units.h"
 
-#include <QDebug>
 #include <QGuiApplication>
 #include <QScreen>
 

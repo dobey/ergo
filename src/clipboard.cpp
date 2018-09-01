@@ -16,7 +16,6 @@
  */
 #include "clipboard.h"
 
-#include <QDebug>
 #include <QGuiApplication>
 #include <QMimeData>
 #include <QMimeDatabase>
