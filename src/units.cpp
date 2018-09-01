@@ -21,8 +21,6 @@
 #include <QGuiApplication>
 #include <QScreen>
 
-#define ENV_GRID_UNIT_PX "GRID_UNIT_PX"
-#define DEFAULT_GRID_UNIT_PX 8
 
 namespace ergo
 {
@@ -42,11 +40,11 @@ static float getenvFloat(const char* name, float defaultValue)
 Units::Units(QObject *parent):
     QObject(parent)
 {
-    m_gridUnitPx = getenvFloat(ENV_GRID_UNIT_PX, DEFAULT_GRID_UNIT_PX);
+    m_gridUnitPx = getenvFloat(GRID_UNIT_PX_ENV, GRID_UNIT_PX_DEFAULT);
 }
 
 
-int Units::dp(float value)
+int Units::dp(double value)
 {
     auto screen = QGuiApplication::primaryScreen();
     // Based on 160 DPI as 1:1 to match Android
@@ -54,7 +52,7 @@ int Units::dp(float value)
 }
 
 
-int Units::gu(float value)
+int Units::gu(double value)
 {
     return qRound(value * m_gridUnitPx);
 }

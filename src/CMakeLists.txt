@@ -21,3 +21,11 @@ target_link_libraries(${PLUGIN_NAME}
 
   ${CMAKE_THREAD_LIBS_INIT}
 )
+
+# We need tests
+add_subdirectory(tests)
+
+set(COVERAGE_TEST_TARGETS
+  ${COVERAGE_TEST_TARGETS}
+  PARENT_SCOPE
+)

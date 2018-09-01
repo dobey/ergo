@@ -33,9 +33,9 @@ set(PLUGIN_NAME ergoplugin)
 #add_subdirectory(po)
 add_subdirectory(src)
 
-#find_package(CoverageReport)
-#enable_coverage_report(
-#  TARGETS ${PLUGIN_NAME}
-#  TESTS ${COVERAGE_TEST_TARGETS}
-#  FILTER /usr/include ${CMAKE_BINARY_DIR}/*
-#)
+find_package(CoverageReport)
+enable_coverage_report(
+  TARGETS ${PLUGIN_NAME}
+  TESTS ${COVERAGE_TEST_TARGETS}
+  FILTER /usr/include ${CMAKE_BINARY_DIR}/*
+)
