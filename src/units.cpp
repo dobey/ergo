@@ -43,7 +43,7 @@ Units::Units(QObject *parent):
 }
 
 
-int Units::dp(double value)
+int Units::dp(double value) const
 {
     auto screen = QGuiApplication::primaryScreen();
     // Based on 160 DPI as 1:1 to match Android
@@ -51,7 +51,7 @@ int Units::dp(double value)
 }
 
 
-int Units::gu(double value)
+int Units::gu(double value) const
 {
     return qRound(value * m_gridUnitPx);
 }
