@@ -8,6 +8,8 @@ add_library(${PLUGIN_NAME} SHARED
 
   clipboard.cpp
   clipboard.h
+  gettext.cpp
+  gettext.h
   units.cpp
   units.h
 )

@@ -14,6 +14,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include "clipboard.h"
+#include "gettext.h"
 #include "units.h"
 
 #include <QQmlContext>
@@ -29,15 +30,16 @@ class ErgoPlugin: public QQmlExtensionPlugin
     public:
     void initializeEngine(QQmlEngine *engine, const char *uri) override
     {
-        static ergo::Units *units = new ergo::Units(engine);
+        static auto i18n = new ergo::Gettext(engine);
+        static auto units = new ergo::Units(engine);
 
         auto context = engine->rootContext();
+        context->setContextProperty(QStringLiteral("i18n"), i18n);
         context->setContextProperty(QStringLiteral("units"), units);
     }
 
     void registerTypes(const char *uri) override
     {
-        qmlRegisterUncreatableType<ergo::Units>(uri, 0, 0, "Units", "Not instantiable");
         qmlRegisterType<ergo::Clipboard>(uri, 0, 0, "Clipboard");
     }
 };
