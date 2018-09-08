@@ -41,6 +41,7 @@ class ErgoPlugin: public QQmlExtensionPlugin
     void registerTypes(const char *uri) override
     {
         qmlRegisterType<ergo::Clipboard>(uri, 0, 0, "Clipboard");
+        qmlRegisterType<ergo::Gettext>(uri, 0, 0, "Gettext");
     }
 };
 

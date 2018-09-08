@@ -25,6 +25,9 @@ namespace ergo
     class Gettext: public QObject
     {
         Q_OBJECT
+        Q_PROPERTY(QString domain
+                   READ domain
+                   WRITE setDomain)
 
       public:
         explicit Gettext(QObject *parent = 0);
@@ -33,6 +36,14 @@ namespace ergo
         Q_INVOKABLE QString tr(const QString& singular,
                                const QString& plural,
                                int n) const;
+
+        QString domain() const;
+        void setDomain(const QString& domain);
+
+      private:
+        Q_DISABLE_COPY(Gettext);
+
+        QString m_domain;
     };
 
 } // namespace ergo

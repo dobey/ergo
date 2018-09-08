@@ -16,6 +16,9 @@
  */
 #include "gettext.h"
 
+#include <QDebug>
+#include <QDir>
+
 #include <libintl.h>
 
 
@@ -25,6 +28,7 @@ namespace ergo
 Gettext::Gettext(QObject *parent):
     QObject(parent)
 {
+    setlocale(LC_ALL, "");
 }
 
 QString Gettext::tr(const QString& text) const
@@ -37,6 +41,38 @@ QString Gettext::tr(const QString& singular,
                     int n) const
 {
     return QString::fromUtf8(ngettext(singular.toUtf8(), plural.toUtf8(), n));
+}
+
+QString Gettext::domain() const
+{
+    return m_domain;
+}
+
+void Gettext::setDomain(const QString& domain)
+{
+    if (!m_domain.isEmpty()) {
+        qWarning() << "Domain already set, not setting.";
+        return;
+    }
+    m_domain = domain;
+
+    textdomain(m_domain.toUtf8());
+
+    /* Find the path */
+    QString appDir = QString::fromLocal8Bit(getenv("APP_DIR"));
+    QString localePath;
+
+    if (appDir.isEmpty()) {
+        appDir = QString::fromLocal8Bit(getenv("SNAP"));
+    }
+
+    if (!appDir.isEmpty() &&QDir::isAbsolutePath(appDir)) {
+        localePath = QDir(appDir).filePath(QStringLiteral("share/locale"));
+    } else {
+        localePath = QStringLiteral("/usr/share/locale");
+    }
+
+    bindtextdomain(m_domain.toUtf8(), localePath.toUtf8());
 }
 
 } // namespace ergo
