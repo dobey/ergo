@@ -29,14 +29,7 @@ namespace ergo
       public:
         explicit Units(QObject *parent = 0);
 
-        constexpr static const char* GRID_UNIT_PX_ENV{"GRID_UNIT_PX"};
-        constexpr static const float GRID_UNIT_PX_DEFAULT{8.0};
-
         Q_INVOKABLE int dp(double value) const;
-        Q_INVOKABLE int gu(double value) const;
-
-      private:
-        float m_gridUnitPx;
     };
 
 } // namespace ergo

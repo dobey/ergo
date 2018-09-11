@@ -23,10 +23,8 @@ class TestUnits: public QObject
 
   private slots:
     void dp_data();
-    void gu_data();
 
     void dp();
-    void gu();
 };
 
 
@@ -50,30 +48,6 @@ void TestUnits::dp()
     auto units = new ergo::Units(parent());
     QCOMPARE(units->dp(input), expected);
 }
-
-void TestUnits::gu_data()
-{
-    QTest::addColumn<double>("grid_unit_px");
-    QTest::addColumn<double>("input");
-    QTest::addColumn<int>("expected");
-
-    QTest::newRow("default") << 8.0 << 8.0 << 64;
-    QTest::newRow("average") << 12.0 << 10.0 << 120;
-    QTest::newRow("high dpi") << 23.0 << 2.5 << 58;
-}
-
-void TestUnits::gu()
-{
-    QFETCH(double, grid_unit_px);
-    QFETCH(double, input);
-    QFETCH(int, expected);
-
-    qputenv(ergo::Units::GRID_UNIT_PX_ENV, QByteArray().setNum(grid_unit_px));
-    auto units = new ergo::Units(parent());
-    QCOMPARE(units->gu(input), expected);
-    qunsetenv(ergo::Units::GRID_UNIT_PX_ENV);
-}
-
 
 QTEST_MAIN(TestUnits)
 #include "test-units.moc"

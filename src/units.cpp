@@ -24,22 +24,9 @@
 namespace ergo
 {
 
-/*
- * Read an environment variable value as a float
- */
-static float getenvFloat(const char* name, float defaultValue)
-{
-    QByteArray stringValue = qgetenv(name);
-    bool ok;
-    float value = stringValue.toFloat(&ok);
-    return ok ? value : defaultValue;
-}
-
-
 Units::Units(QObject *parent):
     QObject(parent)
 {
-    m_gridUnitPx = getenvFloat(GRID_UNIT_PX_ENV, GRID_UNIT_PX_DEFAULT);
 }
 
 
@@ -48,12 +35,6 @@ int Units::dp(double value) const
     auto screen = QGuiApplication::primaryScreen();
     // Based on 160 DPI as 1:1 to match Android
     return qRound(value * (screen->physicalDotsPerInch() / 160));
-}
-
-
-int Units::gu(double value) const
-{
-    return qRound(value * m_gridUnitPx);
 }
 
 } // namespace ergo
