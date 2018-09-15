@@ -284,7 +284,13 @@ QImage ThemeIconProvider::requestImage(const QString &id, QSize *size, const QSi
     // The hicolor theme will be searched last as per
     // https://specifications.freedesktop.org/icon-theme-spec/icon-theme-spec-latest.html
     QSet<QString> alreadySearchedThemes;
-    const QStringList names = id.split(QLatin1Char(','), QString::SkipEmptyParts);
+    QStringList parts = id.split(QLatin1Char('-'), QString::SkipEmptyParts);
+    QStringList names;
+    for (int i = parts.length(); i > 0; i--) {
+        names.append(parts.join("-"));
+        parts.removeLast();
+    }
+
     QImage image = theme->findBestIcon(names, size, requestedSize, &alreadySearchedThemes);
 
     if (image.isNull()) {
