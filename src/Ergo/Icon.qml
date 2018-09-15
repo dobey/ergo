@@ -40,7 +40,8 @@ Item {
         sourceSize.width: width
         sourceSize.height: height
 
-        source: iconRoot.name ? "image://theme/%1".arg(iconRoot.name) : ""
+        readonly property string rtl: Qt.application.layoutDirection == Qt.RightToLeft ? "-rtl" : ""
+        source: iconRoot.name ? "image://theme/%1%2".arg(iconRoot.name).arg(rtl) : ""
     }
 
     ShaderEffect {
