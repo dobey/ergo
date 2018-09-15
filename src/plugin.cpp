@@ -17,6 +17,9 @@
 #include "gettext.h"
 #include "units.h"
 
+// TODO: Replace this with seemless theme implementation
+#include "unitythemeiconprovider.h"
+
 #include <QQmlContext>
 #include <QQmlEngine>
 #include <QQmlExtensionPlugin>
@@ -30,6 +33,10 @@ class ErgoPlugin: public QQmlExtensionPlugin
     public:
     void initializeEngine(QQmlEngine *engine, const char *uri) override
     {
+        // FIXME: Need a better way to do this.
+        static auto provider = new unity::ThemeIconProvider();
+        engine->addImageProvider(QLatin1String("theme"), provider);
+
         static auto i18n = new ergo::Gettext(engine);
         static auto units = new ergo::Units(engine);
 

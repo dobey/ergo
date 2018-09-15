@@ -1,6 +1,7 @@
 
 find_package(Qt5Gui REQUIRED)
 find_package(Qt5Qml REQUIRED)
+find_package(Qt5Quick REQUIRED)
 
 configure_file(qmldir.in Ergo/qmldir)
 add_library(${PLUGIN_NAME} SHARED
@@ -12,6 +13,8 @@ add_library(${PLUGIN_NAME} SHARED
   gettext.h
   units.cpp
   units.h
+  unitythemeiconprovider.cpp
+  unitythemeiconprovider.h
 )
 
 set_target_properties(${PLUGIN_NAME} PROPERTIES
@@ -22,6 +25,7 @@ target_link_libraries(${PLUGIN_NAME}
   Qt5::Core
   Qt5::Gui
   Qt5::Qml
+  Qt5::Quick
 
   ${CMAKE_THREAD_LIBS_INIT}
 )

@@ -1,2 +1,4 @@
 module Ergo
 plugin @PLUGIN_NAME@
+
+Icon 0.0 Icon.qml

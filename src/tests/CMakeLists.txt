@@ -3,6 +3,7 @@ set(XVFB_CMD xvfb-run -a -s "-screen 0 540x960x24")
 find_package(Qt5Test REQUIRED)
 
 include_directories(${CMAKE_SOURCE_DIR}/src)
+add_definitions(-DCMAKE_CURRENT_SOURCE_DIR="${CMAKE_CURRENT_SOURCE_DIR}")
 
 function(add_test_by_name name)
   set(TEST_NAME ${name})
@@ -21,6 +22,7 @@ endfunction()
 
 add_test_by_name(test-clipboard)
 add_test_by_name(test-units)
+add_test_by_name(test-unitythemeiconprovider)
 
 set(COVERAGE_TEST_TARGETS
   ${COVERAGE_TEST_TARGETS}
