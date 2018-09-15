@@ -178,11 +178,11 @@ private:
         QString svg = QStringLiteral("%1/%2.svg").arg(dir, name);
 
         Q_FOREACH(const QString &baseDir, baseDirs) {
-            QString filename = baseDir + "/" + png;
+            QString filename = baseDir + "/" + svg;
             if (QFileInfo::exists(filename))
                 return filename;
 
-            filename = baseDir + "/" + svg;
+            filename = baseDir + "/" + png;
             if (QFileInfo::exists(filename))
                 return filename;
         }
