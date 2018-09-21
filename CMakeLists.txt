@@ -30,6 +30,7 @@ find_package(PkgConfig REQUIRED)
 
 # The real code begins here
 set(PLUGIN_NAME ergoplugin)
+add_subdirectory(docs)
 #add_subdirectory(po)
 add_subdirectory(src)
 
