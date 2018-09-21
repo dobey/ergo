@@ -5,5 +5,6 @@ add_doxygen(ergo-doc
     STRIP_FROM_PATH ${CMAKE_SOURCE_DIR}
     FILE_PATTERNS *.qml *.cpp *.h
     EXCLUDE_PATTERNS */tests/* plugin.cpp unity*
+    XML
     ALL
 )
