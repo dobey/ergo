@@ -18,14 +18,52 @@
 import Ergo 0.0
 import QtQuick 2.7
 
+/*! \brief The Icon component displays a themed icon which may have its base
+ *         color swapped with the specified color.
+ *
+ *  Using icons whenever possible enhances consistency accross applications.
+ *  Each icon has a name and can have different visual representations
+ *  depending on the size requested.
+ *
+ *  Setting the \ref color property will colorize all pixels with the
+ *  \ref baseColor (by default #808080), with the specified color.
+ *
+ *  Example:
+ *  \code
+ *  Icon {
+ *      width: units.dp(48)
+ *      height: units.dp(48)
+ *      name: "go-previous"
+ *  }
+ *  \endcode
+ *
+ *  Example of colorization:
+ *  \code
+ *  Icon {
+ *      width: units.dp(48)
+ *      height: units.dp(48)
+ *      name: "go-previous"
+ *      color: "red"
+ *  }
+ *  \endcode
+ *
+ *  Icon themes are created following the
+ *  [Freedesktop Icon Theme Specification](http://standards.freedesktop.org/icon-theme-spec/icon-theme-spec-latest.html).
+ */
 Item {
     id: iconRoot
 
+    /** The named icon to use from the theme. **/
     property string name
 
+    /** type:url A URL source for the Icon. Overrides \ref name if set. **/
     property alias source: iconImage.source
+
+    /** type:color The color to colorize the Icon with. **/
     property alias color: colorMask.colorOut
-    property alias keyColor: colorMask.colorIn
+
+    /** type:color The color to be replaced in the Icon when colorizing. **/
+    property alias baseColor: colorMask.colorIn
 
     Image {
         id: iconImage
