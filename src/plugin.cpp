@@ -31,6 +31,12 @@ class ErgoPlugin: public QQmlExtensionPlugin
     Q_PLUGIN_METADATA(IID QQmlExtensionInterface_iid)
 
     public:
+    explicit ErgoPlugin(QObject *parent=0):
+        QQmlExtensionPlugin(parent)
+    {
+        setlocale(LC_ALL, "");
+    }
+
     void initializeEngine(QQmlEngine *engine, const char *uri) override
     {
         // FIXME: Need a better way to do this.

@@ -25,17 +25,33 @@
 namespace ergo
 {
 
+//! @cond
 Gettext::Gettext(QObject *parent):
     QObject(parent)
 {
-    setlocale(LC_ALL, "");
 }
+//! @endcond
 
+/*! Get the translated version of a string
+ *
+ * @param text The untranslated version of a string to be translated
+ * @return The translated version of text
+ */
 QString Gettext::tr(const QString& text) const
 {
     return QString::fromUtf8(gettext(text.toUtf8()));
 }
 
+/*! Get the translated version of a possibly pluralized string
+ *
+ * @param singular The untranslated version of the string to be translated,
+ *     in singular form
+ * @param plural The untranslated version of the string to be translated,
+ *     in plural form
+ * @param n The value for determining the correct singular or plural form of
+ *     the translated version of the string
+ * @return The translated version of singular or plural
+ */
 QString Gettext::tr(const QString& singular,
                     const QString& plural,
                     int n) const
@@ -43,6 +59,7 @@ QString Gettext::tr(const QString& singular,
     return QString::fromUtf8(ngettext(singular.toUtf8(), plural.toUtf8(), n));
 }
 
+//!@cond
 QString Gettext::domain() const
 {
     return m_domain;
@@ -74,5 +91,6 @@ void Gettext::setDomain(const QString& domain)
 
     bindtextdomain(m_domain.toUtf8(), localePath.toUtf8());
 }
+//! @endcond
 
 } // namespace ergo

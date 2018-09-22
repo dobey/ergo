@@ -28,7 +28,9 @@ namespace ergo
         Q_OBJECT
 
       public:
+        //! @cond
         explicit Clipboard(QObject *parent = 0);
+        //! @endcond
 
         Q_INVOKABLE void pushData(const QVariant& data);
 

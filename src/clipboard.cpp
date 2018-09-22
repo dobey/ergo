@@ -24,13 +24,17 @@
 namespace ergo
 {
 
+//! @cond
 Clipboard::Clipboard(QObject *parent):
     QObject(parent)
 {
     m_clipboard = QGuiApplication::clipboard();
 }
+//! @endcond
 
-
+/*! Post some data to the system clipboard
+ *
+ */
 void Clipboard::pushData(const QVariant& data)
 {
     if (!data.isValid()) {

@@ -22,23 +22,35 @@
 namespace ergo
 {
 
+    /*! Utilities for translating QML interfaces using gettext
+     *
+     * Gettext provides a component for setting the translation domain of
+     * the application from QML, and the `i18n` context property, which
+     * provides access to the methods for internationalizing an application.
+     *
+     */
     class Gettext: public QObject
     {
         Q_OBJECT
+        /*! The translation domain of the application */
         Q_PROPERTY(QString domain
                    READ domain
                    WRITE setDomain)
 
       public:
+        //! @cond
         explicit Gettext(QObject *parent = 0);
+        //! @endcond
 
         Q_INVOKABLE QString tr(const QString& text) const;
         Q_INVOKABLE QString tr(const QString& singular,
                                const QString& plural,
                                int n) const;
 
+        //! @cond
         QString domain() const;
         void setDomain(const QString& domain);
+        //! @endcond
 
       private:
         Q_DISABLE_COPY(Gettext);

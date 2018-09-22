@@ -24,12 +24,23 @@
 namespace ergo
 {
 
+//! @cond
 Units::Units(QObject *parent):
     QObject(parent)
 {
 }
+//! @endcond
 
-
+/*! A display-independent pixel calculator
+ *
+ * Calculates an appropriate size in pixels, based on the input value in
+ * pixels for a 160 DPI screen, and the physical DPI of the creen currently
+ * being displayed on.
+ *
+ * @param value The standard number of pixels used on a 160 DPI screen.
+ *
+ * @return The nearest number of pixels, scaled from a 160 DPI base.
+ */
 int Units::dp(double value) const
 {
     auto screen = QGuiApplication::primaryScreen();

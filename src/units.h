@@ -22,12 +22,35 @@
 namespace ergo
 {
 
+  /*! Utilities for handling units of screen measurement
+   *
+   * Units provides provides device-independent pixel size calculations, to
+   * aid in the development of application interfaces which scale correctly
+   * across a wide range of screen configurations.
+   *
+   * The Units class is not instantiable within an application directly, but
+   * must be used through the singleton `units` context property.
+   *
+   * \code
+   * import QtQuick 2.7
+   * import QtQuick.Controls 2.2
+   * import Ergo 0.0
+   *
+   * Page {
+   *     width: units.dp(640)
+   *     height: units.dp(480)
+   * }
+   * \endcode
+   *
+   */
     class Units: public QObject
     {
         Q_OBJECT
 
       public:
+        //! @cond
         explicit Units(QObject *parent = 0);
+        //! @endcond
 
         Q_INVOKABLE int dp(double value) const;
     };
