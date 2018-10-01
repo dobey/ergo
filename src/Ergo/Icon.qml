@@ -18,8 +18,8 @@
 import Ergo 0.0
 import QtQuick 2.7
 
-/*! \brief The Icon component displays a themed icon which may have its base
- *         color swapped with the specified color.
+/*! The Icon component displays a themed icon which may have its base color
+ *  swapped with the specified color.
  *
  *  Using icons whenever possible enhances consistency accross applications.
  *  Each icon has a name and can have different visual representations
